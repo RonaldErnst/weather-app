@@ -5,9 +5,9 @@ function App() {
   const { weatherData } = useWeather();
 
   return (
-    <div>
+    <>
         {JSON.stringify(weatherData)}
-    </div>
+    </>
   );
 }
 
