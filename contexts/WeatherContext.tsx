@@ -23,9 +23,9 @@ export const WeatherProvider: FC = ({ children }) => {
 
 	useEffect(() => {
 		// Location changed
-		async function getWeather({ lat, lon } : LocationType) {
+		async function getWeather({ lat, lng } : LocationType) {
 			const api_call = await fetch(
-				`${openweathermap.url}onecall?lat=${lat}&lon=${lon}&lang=${getDefaultLang()}&units=${units}exclude=minutely,hourly,alerts&appid=${openweathermap.key}`
+				`${openweathermap.url}onecall?lat=${lat}&lon=${lng}&lang=${getDefaultLang()}&units=${units}exclude=minutely,hourly,alerts&appid=${openweathermap.key}`
 			);
 			const data = await api_call.json();
 			setWeatherData(data);

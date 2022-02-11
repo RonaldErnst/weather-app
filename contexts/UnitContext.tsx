@@ -1,4 +1,4 @@
-import React, { useState, useContext, FC } from "react";
+import React, { useState, useContext, FC, useEffect } from "react";
 
 const UnitContext = React.createContext<any>(null);
 
@@ -18,8 +18,12 @@ export function getDefaultLang() {
 }
 
 export const UnitProvider: FC = ({ children }) => {
-  const isMetric = !["en-US", "my"].includes(getDefaultLang());
-	const [units, setUnits] = useState(isMetric? unitTypes.METRIC : unitTypes.IMPERIAL);
+	const [units, setUnits] = useState("");
+
+	useEffect(() => {
+		const isMetric = !["en-US", "my"].includes(getDefaultLang());
+		setUnits(isMetric? unitTypes.METRIC : unitTypes.IMPERIAL);
+	}, []);
 
 	return (
 		<UnitContext.Provider

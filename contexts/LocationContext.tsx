@@ -21,10 +21,10 @@ async function getGeoData(lat: number, lon: number) {
 	}
 }
 
-export type LocationType = { lat: number; lon: number; geoData: any };
+export type LocationType = { lat: number; lng: number; geoData: any };
 let defaultLocation: LocationType = {
 	lat: 28.67,
-	lon: 77.22,
+	lng: 77.22,
 	geoData: null,
 };
 
@@ -50,7 +50,7 @@ async function getDefaultLocation() {
 			);
 			location = {
 				lat: response.coords.latitude as number,
-				lon: response.coords.longitude as number,
+				lng: response.coords.longitude as number,
 				geoData,
 			};
 		}

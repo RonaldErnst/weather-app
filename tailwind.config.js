@@ -1,11 +1,13 @@
 module.exports = {
-	content: ["./src/**/*.{js,jsx,ts,tsx}"],
+	mode: "jit",
+	content: [
+		"./pages/**/*.{js,ts,jsx,tsx}",
+		"./components/**/*.{js,ts,jsx,tsx}",
+		"./containers/**/*.{js,ts,jsx,tsx}",
+		"./contexts/**/*.{js,ts,jsx,tsx}",
+	],
 	theme: {
-		extend: {
-			dropShadow: {
-				"3xl": "0 4px 2px rgba(0, 0, 0, 0.4)",
-			},
-		},
+		extend: {},
 	},
 	plugins: [],
 };

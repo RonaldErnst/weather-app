@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import LocationPicker from "components/LocationPicker";
-import UnitSystemPicker from "components/UnitSystemPicker";
-import { getDefaultLang } from "contexts/UnitContext";
+import LocationPicker from "../components/LocationPicker";
+import UnitSystemPicker from "../components/UnitSystemPicker";
+import { getDefaultLang } from "../contexts/UnitContext";
 
 export default function Header() {
-	const language = getDefaultLang();
+	const [language, setLanguage] = useState("");
 	const [currentTime, setCurrentTime] = useState(new Date());
 
 	useEffect(() => {
+		setLanguage(getDefaultLang());
+
 		const interval = setInterval(() => {
 			setCurrentTime(new Date());
 		}, 1000);
@@ -17,6 +19,9 @@ export default function Header() {
 		};
 	}, []);
 
+	if(!language)
+		return null;
+		
 	return (
 		<div className="w-full flex justify-between pt-10 px-20 text-xl drop-shadow-3xl">
 			<div>
