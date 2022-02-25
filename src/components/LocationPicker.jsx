@@ -11,15 +11,10 @@ import {
 } from "react-leaflet";
 
 import L from "leaflet";
-import icon from "leaflet/dist/images/marker-icon.png";
+import iconURL from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-let DefaultIcon = L.icon({
-	iconUrl: icon,
-	shadowUrl: iconShadow,
-});
 
-L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function LocationPicker() {
 	const { location } = useLocation();
@@ -71,6 +66,7 @@ export default function LocationPicker() {
 
 function CustomMarker() {
 	const { location, setLocation } = useLocation();
+
 	useMapEvents({
 		click(e) {
 			const newLocation = {
@@ -82,8 +78,18 @@ function CustomMarker() {
 		},
 	});
 
+	function getMarkerIcon() {
+    const icon = new L.Icon({
+      iconSize: [32, 37], // size of the icon
+      iconAnchor: [16, 37], 
+      iconUrl: iconURL,
+			iconShadow: iconShadow,
+    });
+    return icon;
+  }
+
 	return (
-		<Marker position={location} interactive={false}>
+		<Marker position={location} interactive={false} icon={getMarkerIcon()}>
 			<Popup>Get Weather from this location</Popup>
 		</Marker>
 	);
