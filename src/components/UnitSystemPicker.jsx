@@ -16,7 +16,7 @@ export default function UnitSystemPicker() {
   }
 
   return (<>
-    <span onClick={handleClick} className="block text-white text-md float-right">
+    <span onClick={handleClick} className="block text-white text-md float-right cursor-pointer rounded-full p-2 hover:bg-white/10">
       {units === unitTypes.METRIC? <ThermC className="w-8 h-8" fill="white"/> : <ThermF className="w-8 h-8" fill="white"/>}
     </span>
   </>);

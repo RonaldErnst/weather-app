@@ -1,4 +1,5 @@
-import React, { useState, useContext,  useEffect } from "react";
+import React, { useContext } from "react";
+import useLocalStorage from "../utils/useLocalStorage";
 
 const UnitContext = React.createContext(null);
 
@@ -17,13 +18,13 @@ export function getDefaultLang() {
 	return navigator.language;
 }
 
-export const UnitProvider = ({ children }) => {
-	const [units, setUnits] = useState("");
+function getDefaultUnit() {
+	const isMetric = !["en-US", "my"].includes(getDefaultLang());
+	return isMetric? unitTypes.METRIC : unitTypes.IMPERIAL;
+}
 
-	useEffect(() => {
-		const isMetric = !["en-US", "my"].includes(getDefaultLang());
-		setUnits(isMetric? unitTypes.METRIC : unitTypes.IMPERIAL);
-	}, []);
+export const UnitProvider = ({ children }) => {
+	const [units, setUnits] = useLocalStorage("units", getDefaultUnit());
 
 	return (
 		<UnitContext.Provider

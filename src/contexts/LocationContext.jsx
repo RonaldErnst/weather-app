@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import Geocode from "react-geocode";
+import React, { useEffect, useContext } from "react";
+import useLocalStorage from '../utils/useLocalStorage';
 
 const LocationContext = React.createContext(null);
 
@@ -7,24 +7,9 @@ export function useLocation() {
 	return useContext(LocationContext);
 }
 
-async function getGeoData(lat, lon) {
-	try {
-		const response = await Geocode.fromLatLng(
-			lat.toString(),
-			lon.toString()
-		);
-		console.log(response);
-
-		return response;
-	} catch (error) {
-		return null;
-	}
-}
-
 let defaultLocation = {
 	lat: 28.67,
-	lng: 77.22,
-	geoData: null,
+	lng: 77.22
 };
 
 function getCurrentPosition() {
@@ -43,14 +28,9 @@ async function getDefaultLocation() {
 	if (navigator.geolocation) {
 		const response = await getCurrentPosition();
 		if (response !== null) {
-			const geoData = await getGeoData(
-				response.coords.latitude,
-				response.coords.longitude
-			);
 			location = {
-				lat: response.coords.latitude,
-				lng: response.coords.longitude,
-				geoData,
+				lat: response.coords.latitude.toFixed(6),
+				lng: response.coords.longitude.toFixed(6),
 			};
 		}
 	}
@@ -59,17 +39,25 @@ async function getDefaultLocation() {
 }
 
 export const LocationProvider = ({ children }) => {
-	const [location, setLocation] = useState(defaultLocation);
+	const [location, setLocation] = useLocalStorage("location", null);
 
 	useEffect(() => {
 		// Get inital Location
 		async function getInitialLocation() {
-			const location = (await getDefaultLocation());
-			setLocation(location);
+			console.log(location);
+			if(location) // Location already set, return
+				return;
+
+			const defaultLocation = await getDefaultLocation();
+			setLocation(defaultLocation);
 		}
 
 		getInitialLocation();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	if(!location)
+		return null;
 
 	return (
 		<LocationContext.Provider

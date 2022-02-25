@@ -23,18 +23,18 @@ export const WeatherProvider = ({ children }) => {
 
 	useEffect(() => {
 		// Location changed
-		async function getWeather({ lat, lng }) {
+		async function getWeather() {
 			const api_call = await fetch(
-				`${openweathermap.url}onecall?lat=${lat}&lon=${lng}&lang=${getDefaultLang()}&units=${units}exclude=minutely,hourly,alerts&appid=${openweathermap.key}`
+				`${openweathermap.url}onecall?lat=${location.lat}&lon=${location.lng}&lang=${getDefaultLang()}&units=${units}&exclude=minutely,hourly,alerts&appid=${openweathermap.key}`
 			);
 			const data = await api_call.json();
 			setWeatherData(data);
 		}
 
-		getWeather(location);
+		getWeather();
 		// If location changed, also change update timer
 		const refreshInterval = setInterval(async () => {
-			getWeather(location);
+			getWeather();
 		}, resetIntevalTime);
 
 		return () => {

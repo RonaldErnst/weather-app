@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AppContextProvider } from "../contexts/AppContext";
 import Header from "./Header";
+import CurrentWeather from "./CurrentWeather";
 
 const bgMax = 800;
 const bgMin = 400;
@@ -46,9 +47,10 @@ function App() {
 	return (
 		<AppContextProvider>
 			<div
-				className={`w-screen h-screen bg-gradient-to-b ${bgColor} to-white`}
+				className={`w-screen h-screen bg-gradient-to-b ${bgColor} to-white flex flex-col items-center text-white`}
 			>
 				<Header />
+				<CurrentWeather />
 			</div>
 		</AppContextProvider>
 	);

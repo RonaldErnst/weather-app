@@ -10,12 +10,12 @@ export default function Header() {
 	useEffect(() => {
 		setLanguage(getDefaultLang());
 
-		const interval = setInterval(() => {
-			setCurrentTime(new Date());
-		}, 1000);
+		// const interval = setInterval(() => {
+		// 	setCurrentTime(new Date());
+		// }, 1000);
 
 		return () => {
-			clearInterval(interval);
+			// clearInterval(interval);
 		};
 	}, []);
 
@@ -23,12 +23,12 @@ export default function Header() {
 		return null;
 		
 	return (
-		<div className="w-full flex justify-between pt-10 px-20 text-xl drop-shadow-3xl">
+		<div className="w-full flex justify-between px-6 py-4 text-xl drop-shadow-3xl">
 			<div>
-				<span className="block text-white">
+				<span className="block p-2 rounded-full">
           {new Intl.DateTimeFormat(language, { dateStyle: 'full' }).format(currentTime)}
         </span>
-				<span className="block text-white">
+				<span className="block p-2 rounded-full">
 					{new Intl.DateTimeFormat(language, {hour: "2-digit", minute: "2-digit"}).format(currentTime)}
 				</span>
 			</div>
