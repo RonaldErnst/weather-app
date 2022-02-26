@@ -55,7 +55,7 @@ export default function SingleForecast({ forecast }) {
           {forecast.pop * 100}%
         </div>
       </div>
-      <div className="w-full flex flex-row justify-between items-center">
+      <div className="w-full flex flex-row justify-center items-center gap-16">
         <div className="flex flex-col justify-center items-center gap-2">
           <Sunset className="w-8 h-8 inline-block" fill="black"/>
           <div>

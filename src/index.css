@@ -17,6 +17,6 @@ body {
   }
 
   .ReactModalOverlay {
-    @apply fixed inset-0 w-full h-full bg-white/60 flex justify-center items-center
+    @apply fixed inset-0 w-full h-full bg-gray-500/60 flex justify-center items-center
   }
 }

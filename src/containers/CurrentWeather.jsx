@@ -20,7 +20,7 @@ export default function CurrentWeather() {
 
   return (
     <div className='px-8 pb-4 w-1/3 bg-gradient-to-t from-white/30 to-transparent rounded-3xl relative'>
-    <WeatherIcon icon={currentWeather.weather[0].icon} className="absolute -top-24 right-6 w-40 h-40 z-10" fill="white"/>
+    <WeatherIcon icon={currentWeather.weather[0].icon} className="absolute -top-24 right-6 w-40 h-40 -z-10" fill="white"/>
       <div className='flex flex-col items-center justify-center  drop-shadow-3xl'>
         <div className='flex flex-col items-center gap-2 relative -top-8'>
           <div className='text-6xl '>{roundToDecimal(currentWeather.temp)}{units === unitTypes.METRIC? "°C" : "°F"}</div>

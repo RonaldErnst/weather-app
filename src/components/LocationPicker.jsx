@@ -45,7 +45,7 @@ export default function LocationPicker() {
 					rounded-2xl border border-slate-300 
 					shadow-md relative
 					flex justify-center items-center
-					p-4 focus:outline-none
+					p-4 focus:outline-none z-20
 					"
 			>
 				<MapContainer
