@@ -1,9 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { openweathermap } from "../apiKeys";
 import { useLocation } from "./LocationContext";
 import { getDefaultLang, useUnits } from "./UnitContext";
 
 const resetIntevalTime = 30 * 1000; // Fetch Weather Data every 30 secs
+
+const {
+	REACT_APP_OPENWEATHERMAP_KEY,
+	REACT_APP_OPENWEATHERMAP_URL
+} = process.env;
 
 const WeatherContext = React.createContext(null);
 
@@ -19,13 +23,13 @@ export function useWeather() {
 export const WeatherProvider = ({ children }) => {
 	const { location } = useLocation();
 	const { units } = useUnits();
-	const [weatherData, setWeatherData] = useState({});
+	const [weatherData, setWeatherData] = useState(null);
 
 	useEffect(() => {
 		// Location changed
 		async function getWeather() {
 			const api_call = await fetch(
-				`${openweathermap.url}onecall?lat=${location.lat}&lon=${location.lng}&lang=${getDefaultLang()}&units=${units}&exclude=minutely,hourly,alerts&appid=${openweathermap.key}`
+				`${REACT_APP_OPENWEATHERMAP_URL}onecall?lat=${location.lat}&lon=${location.lng}&lang=${getDefaultLang()}&units=${units}&exclude=minutely,hourly,alerts&appid=${REACT_APP_OPENWEATHERMAP_KEY}`
 			);
 			const data = await api_call.json();
 			setWeatherData(data);
@@ -48,7 +52,7 @@ export const WeatherProvider = ({ children }) => {
 				weatherData
 			}}
 		>
-			{children}
+			{weatherData && children}
 		</WeatherContext.Provider>
 	);
 };

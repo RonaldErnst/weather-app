@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AppContextProvider } from "../contexts/AppContext";
 import Header from "./Header";
 import CurrentWeather from "./CurrentWeather";
+import Forecasts from "./Forecasts";
 
 const bgMax = 800;
 const bgMin = 400;
@@ -47,10 +48,11 @@ function App() {
 	return (
 		<AppContextProvider>
 			<div
-				className={`w-screen h-screen bg-gradient-to-b ${bgColor} to-white flex flex-col items-center text-white`}
+				className={`w-screen h-screen bg-gradient-to-b ${bgColor} to-white flex flex-col items-center text-white gap-12`}
 			>
 				<Header />
 				<CurrentWeather />
+				<Forecasts />
 			</div>
 		</AppContextProvider>
 	);

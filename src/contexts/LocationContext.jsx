@@ -44,7 +44,6 @@ export const LocationProvider = ({ children }) => {
 	useEffect(() => {
 		// Get inital Location
 		async function getInitialLocation() {
-			console.log(location);
 			if(location) // Location already set, return
 				return;
 
