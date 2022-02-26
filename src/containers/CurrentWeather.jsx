@@ -20,7 +20,7 @@ export default function CurrentWeather() {
 
   return (
     <div className='px-8 pb-4 w-1/3 bg-gradient-to-t from-white/30 to-transparent rounded-3xl relative'>
-    <WeatherIcon icon={currentWeather.weather[0].icon} className="absolute -top-24 right-6 w-40 h-40 -z-10" fill="white"/>
+    <WeatherIcon icon={currentWeather.weather[0].icon} className="absolute -top-24 right-6 w-40 h-40 z-0" fill="white"/>
       <div className='flex flex-col items-center justify-center  drop-shadow-3xl'>
         <div className='flex flex-col items-center gap-2 relative -top-8'>
           <div className='text-6xl '>{roundToDecimal(currentWeather.temp)}{units === unitTypes.METRIC? "°C" : "°F"}</div>
@@ -34,7 +34,7 @@ export default function CurrentWeather() {
             </div>
             <div className='flex items-center gap-2'>
               <Rain className="w-10 h-10 inline-block" fill="white"/>
-              {todayWeather.pop * 100}%
+              {Math.round(todayWeather.pop * 100)}%
             </div>
           </div>
           <div className='flex flex-col gap-1 items-center'>
@@ -45,7 +45,7 @@ export default function CurrentWeather() {
               Low: {roundToDecimal(todayWeather.temp.min)}{units === unitTypes.METRIC? "°C" : "°F"}
             </div>
             <div>
-              Humidity: {currentWeather.humidity}%
+              Humidity: {Math.round(currentWeather.humidity)}%
             </div>
           </div>
         </div>

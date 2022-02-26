@@ -24,8 +24,6 @@ export default function SingleForecast({ forecast }) {
     minute: '2-digit',
   });
 
-	console.log(forecast);
-
 	return (
 		<div className="
       w-full py-4 px-6
@@ -52,7 +50,7 @@ export default function SingleForecast({ forecast }) {
         </div>
         <div className='flex items-center gap-1'>
           <Rain className="w-6 h-6 inline-block" fill="black"/>
-          {forecast.pop * 100}%
+          {Math.round(forecast.pop * 100)}%
         </div>
       </div>
       <div className="w-full flex flex-row justify-center items-center gap-16">
